@@ -1,6 +1,7 @@
 package com.evollu.react.fcm;
 
 import java.util.Map;
+import java.util.HashMap; 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -82,10 +83,20 @@ public class MessagingService extends FirebaseMessagingService {
             return;
         }
         Map<String, String> data = remoteMessage.getData();
-        String customNotification = data.get("custom_notification");
+        // String customNotification = data.get("custom_notification");
+        String customNotification = data.get("alert");
+
+        Map map = new HashMap();
+        map.put("title", "健康保健室");
+        map.put("body", customNotification);
+        map.put("priority", "high");
+        map.put("large_icon", "ic_launcher");
+        map.put("icon", "ic_notification");
+        map.put("show_in_foreground", true);
+
         if(customNotification != null){
             try {
-                Bundle bundle = BundleJSONConverter.convertToBundle(new JSONObject(customNotification));
+                Bundle bundle = BundleJSONConverter.convertToBundle(new JSONObject(map));
                 FIRLocalMessagingHelper helper = new FIRLocalMessagingHelper(this.getApplication());
                 helper.sendNotification(bundle);
             } catch (JSONException e) {
