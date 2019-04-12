@@ -53,7 +53,7 @@ declare module "react-native-fcm" {
         priority?: string;
         show_in_foreground?: boolean;
         click_action?: string;
-        badge?: number; 
+        badge?: number;
         number?: number;
         ticker?: string;
         auto_cancel?: boolean;
@@ -101,6 +101,13 @@ declare module "react-native-fcm" {
         static enableDirectChannel(): void
         static isDirectChannelEstablished(): Promise<boolean>
         static getAPNSToken(): Promise<string>
+
+        static createNotificationChannel(config: {
+            id: string;
+            name: string;
+            description?: string;
+            priority?: string;
+          });
     }
 
     export default FCM;

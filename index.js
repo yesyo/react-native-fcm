@@ -62,6 +62,18 @@ FCM.requestPermissions = () => {
   return RNFIRMessaging.requestPermissions();
 };
 
+FCM.createNotificationChannel = (channel) => {
+  if (Platform.OS === 'android') {
+    return RNFIRMessaging.createNotificationChannel(channel);
+  }
+}
+
+FCM.deleteNotificationChannel = (channel) => {
+  if (Platform.OS === 'android') {
+    return RNFIRMessaging.deleteNotificationChannel(channel);
+  }
+}
+
 FCM.presentLocalNotification = (details) => {
   details.id = details.id || new Date().getTime().toString();
   details.local_notification = true;
