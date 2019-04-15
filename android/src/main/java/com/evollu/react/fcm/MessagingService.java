@@ -1,7 +1,7 @@
 package com.evollu.react.fcm;
 
 import java.util.Map;
-import java.util.HashMap; 
+import java.util.HashMap;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -30,7 +30,7 @@ public class MessagingService extends FirebaseMessagingService {
         buildLocalNotification(remoteMessage);
 
         final Intent message = i;
-        
+
         // We need to run this on the main thread, as the React code assumes that is true.
         // Namely, DevServerHelper constructs a Handler() without a Looper, which triggers:
         // "Can't create handler inside thread that has not called Looper.prepare()"
@@ -89,6 +89,7 @@ public class MessagingService extends FirebaseMessagingService {
         Map map = new HashMap();
         map.put("title", "健康保健室");
         map.put("body", customNotification);
+        map.put("big_text", customNotification);
         map.put("priority", "high");
         map.put("large_icon", "ic_launcher");
         map.put("icon", "ic_notification");
